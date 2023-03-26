@@ -11,4 +11,15 @@ img {
 .animal-list {
   display: none;
   position: absolute;
+  background-color: aliceblue;
+  list-style: none;
+  padding: 0;
+}
+li {
+  padding: 12px;
+  border-bottom: 1px solid #ccc;
+}
+li:hover {
+  background-color: #f1f1f1;
+  cursor: pointer;
 }

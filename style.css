@@ -7,3 +7,8 @@ img {
   width: 100%;
   height: auto;
 }
+
+.animal-list {
+  display: none;
+  position: absolute;
+}

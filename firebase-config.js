@@ -14,12 +14,15 @@ import {
   getFirestore,
   collection,
   addDoc,
+  getDoc,
   getDocs,
+  doc,
 } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-firestore.js";
 
-let app = initializeApp(firebaseConfig);
-let db = getFirestore(app);
+let app = initializeApp(firebaseConfig); // Initialize Firebase
+let db = getFirestore(app); // Get a Firestore instance
 async function showDocs() {
+  //function to show the documents in the Animals collection
   let querySnapshot = await getDocs(collection(db, "Animals"));
   querySnapshot.forEach((doc) => {
     let docData = doc.data();
@@ -27,4 +30,12 @@ async function showDocs() {
   });
 }
 
-export { showDocs };
+async function compareUserSelect(animal) {
+  //function to compare the user's selection with the coordinates of the animals
+  let querySnapshot = doc(db, "Animals", animal);
+  let docSnap = await getDoc(querySnapshot);
+  console.log(docSnap.data());
+  console.log(animal);
+}
+
+export { showDocs, compareUserSelect };

@@ -1,6 +1,14 @@
 //import firebase functions
-import { showDocs } from "./firebase-config.js";
+import { showDocs, compareUserSelect } from "./firebase-config.js";
 showDocs();
+
+let characterList = document.querySelectorAll(".animal"); //selecting the characters
+characterList.forEach((element) => {
+  element.addEventListener("click", (e) => {
+    let animal = e.target.innerText;
+    compareUserSelect(animal);
+  });
+});
 
 //function to check where user is clicking on the page
 let coordinates = { xCoordinate: 0, yCoordinate: 0 };

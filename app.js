@@ -1,3 +1,7 @@
+//import firebase functions
+import { showDocs } from "./firebase-config.js";
+showDocs();
+
 //function to check where user is clicking on the page
 let coordinates = { xCoordinate: 0, yCoordinate: 0 };
 //function to get the coordinates of the user

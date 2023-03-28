@@ -1,3 +1,5 @@
+import { showPrompt } from "./standings.js";
+
 // Your Firebase configuration and initialization code
 const firebaseConfig = {
   apiKey: "AIzaSyCz1qfjU-_XZAgdS4oXfcuPV6NaWoancis",
@@ -28,6 +30,7 @@ async function showDocs() {
     let docData = doc.data();
   });
 }
+let Counter = 0; //variable to count the number of times the user has clicked correctly
 
 async function compareUserSelect(animal, x, y) {
   //function to compare the user's selection with the coordinates of the animals
@@ -43,6 +46,9 @@ async function compareUserSelect(animal, x, y) {
     if (dataObject.yPosition - 5 < y && y < dataObject.yPosition + 5) {
       console.log("You found the animal!");
       showX(dataObject.xPosition, dataObject.yPosition);
+      Counter++; //increment the counter
+      showPrompt(Counter); //call the function to show the prompt
+      console.log(Counter);
     }
   }
 }

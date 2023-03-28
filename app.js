@@ -1,6 +1,6 @@
 //import firebase functions
 import { showDocs, compareUserSelect } from "./firebase-config.js";
-showDocs();
+showDocs(); //calling the function to show the documents in the Animals collection
 
 let characterList = document.querySelectorAll(".animal"); //selecting the characters
 characterList.forEach((element) => {

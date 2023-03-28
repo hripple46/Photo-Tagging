@@ -53,3 +53,10 @@ h3 {
   justify-content: center;
   color: white;
 }
+.timer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  font-size: 36px;
+  color: black;
+}

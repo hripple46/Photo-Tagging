@@ -6,10 +6,12 @@ let characterList = document.querySelectorAll(".animal"); //selecting the charac
 characterList.forEach((element) => {
   element.addEventListener("click", (e) => {
     let animal = e.target.innerText;
-    compareUserSelect(animal);
+    compareUserSelect(animal, xPercentage, yPercentage);
   });
 });
 
+let xPercentage = 0; //variables to store the coordinates of the user as percentages in relation to the image
+let yPercentage = 0; //variables to store the coordinates of the user as percentages in relation to the image
 //function to check where user is clicking on the page
 let coordinates = { xCoordinate: 0, yCoordinate: 0 };
 //function to get the coordinates of the user
@@ -49,8 +51,8 @@ let getCoordinatesAsPercentages = (e) => {
   let imageHeight = image.clientHeight;
   let x = e.clientX - image.offsetLeft;
   let y = e.clientY - image.offsetTop;
-  let xPercentage = (x / imageWidth) * 100;
-  let yPercentage = (y / imageHeight) * 100;
+  xPercentage = (x / imageWidth) * 100;
+  yPercentage = (y / imageHeight) * 100;
   console.log({
     xCoordinatePercentage: xPercentage,
     yCoordinatePercentage: yPercentage,

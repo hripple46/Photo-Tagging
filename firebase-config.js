@@ -26,16 +26,24 @@ async function showDocs() {
   let querySnapshot = await getDocs(collection(db, "Animals"));
   querySnapshot.forEach((doc) => {
     let docData = doc.data();
-    console.log(docData);
   });
 }
 
-async function compareUserSelect(animal) {
+async function compareUserSelect(animal, x, y) {
   //function to compare the user's selection with the coordinates of the animals
   let querySnapshot = doc(db, "Animals", animal);
   let docSnap = await getDoc(querySnapshot);
-  console.log(docSnap.data());
-  console.log(animal);
+  let dataObject = docSnap.data();
+  console.log(
+    dataObject.name + ":" + dataObject.xPosition,
+    dataObject.yPosition
+  );
+  console.log("User Selected: " + x, y);
+  if (dataObject.xPosition - 5 < x && x < dataObject.xPosition + 5) {
+    if (dataObject.yPosition - 5 < y && y < dataObject.yPosition + 5) {
+      console.log("You found the animal!");
+    }
+  }
 }
 
 export { showDocs, compareUserSelect };

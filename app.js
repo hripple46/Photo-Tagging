@@ -10,6 +10,9 @@ characterList.forEach((element) => {
   });
 });
 
+let absoluteX = 0; //variables to store the coordinates of the user
+let absoluteY = 0; //variables to store the coordinates of the user
+
 let xPercentage = 0; //variables to store the coordinates of the user as percentages in relation to the image
 let yPercentage = 0; //variables to store the coordinates of the user as percentages in relation to the image
 //function to check where user is clicking on the page
@@ -17,7 +20,10 @@ let coordinates = { xCoordinate: 0, yCoordinate: 0 };
 //function to get the coordinates of the user
 let getUsersCoordinates = (e) => {
   let x = e.clientX;
+  absoluteX = x;
+
   let y = e.clientY;
+  absoluteY = y;
   coordinates.xCoordinate = x;
   coordinates.yCoordinate = y;
   console.log(coordinates);
@@ -37,7 +43,7 @@ let togglePopUpBox = (e) => {
     animalList.style.left = `${coordinates.xCoordinate}px`;
   }
   //check if event.target is neither ul or li then hide the pop up box
-  else if (e.target.tagName !== "UL" && e.target.tagName !== "LI") {
+  else {
     animalList.style.display = "none";
   }
 };

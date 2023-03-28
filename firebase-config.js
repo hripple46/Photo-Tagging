@@ -42,8 +42,22 @@ async function compareUserSelect(animal, x, y) {
   if (dataObject.xPosition - 5 < x && x < dataObject.xPosition + 5) {
     if (dataObject.yPosition - 5 < y && y < dataObject.yPosition + 5) {
       console.log("You found the animal!");
+      showX(dataObject.xPosition, dataObject.yPosition);
     }
   }
+}
+
+function showX(x, y) {
+  //function to show the X on the page
+  let X = document.createElement("img");
+  X.src = "./assets/images/close.png";
+  X.style.position = "absolute";
+  X.style.top = y + "%";
+  X.style.left = x + "%";
+  X.style.height = "50px";
+  X.style.width = "auto";
+  X.style.transform = "translate(-50%, -50%)"; //this is to center the image
+  document.body.appendChild(X);
 }
 
 export { showDocs, compareUserSelect };

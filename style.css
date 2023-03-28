@@ -7,6 +7,9 @@ img {
   width: 100%;
   height: auto;
 }
+body {
+  position: relative;
+}
 
 .animal-list {
   display: none;
@@ -22,4 +25,7 @@ li {
 li:hover {
   background-color: #f1f1f1;
   cursor: pointer;
+}
+.box {
+  position: absolute;
 }

@@ -1,9 +1,12 @@
 let userPrompt = document.querySelector(".userPrompt"); //display user prompt upon completion of game
 function showPrompt(counter) {
   if (counter == 4) {
-    userPrompt.style.display = "flex";
+    userPrompt.style.display = "flex"; //if user has found all animals, display the prompt
     stopTimer(); //stop the timer
-  } //if user has found all animals, display the prompt
+    let congrats = document.querySelector("#congrats"); //display the time taken to find all animals
+    let timeTaken = document.querySelector(".timer").innerHTML;
+    congrats.innerHTML = "CONGRATULATIONS! " + timeTaken + " SECONDS";
+  }
 }
 
 let time = 0; //variable to store the time

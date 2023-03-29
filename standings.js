@@ -53,6 +53,10 @@ function getTopThree(standings) {
 function showTopThree(standings) {
   for (let i = 0; i < 3; i++) {
     console.log(standings[i]);
+    let leaderboard = document.querySelector("#leaderboardList");
+    let score = document.createElement("li");
+    score.innerHTML = `${standings[i].Name} - ${standings[i].Time} seconds`;
+    leaderboard.appendChild(score);
   }
 }
 

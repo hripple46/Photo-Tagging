@@ -1,6 +1,8 @@
 //import firebase functions
 import { showDocs, compareUserSelect } from "./firebase-config.js";
+import { addStandings } from "./standings.js";
 showDocs(); //calling the function to show the documents in the Animals collection
+addStandings(); //calling the function to add the standings to the firestore database
 
 let characterList = document.querySelectorAll(".animal"); //selecting the characters
 characterList.forEach((element) => {
@@ -32,13 +34,21 @@ let getUsersCoordinates = (e) => {
 let animalList = document.querySelector(".animal-list"); //selecting the pop up box
 animalList.style.display = "none"; //hiding the pop up box
 
+let userPrompt = document.querySelector(".userPrompt"); //selecting the user prompt
+userPrompt.style.display = "none"; //hiding the user prompt
+
 let togglePopUpBox = (e) => {
   //function to toggle the pop up box
-  if (animalList.style.display == "none") {
+  console.log(userPrompt.style.display);
+  console.log(animalList.style.display);
+  if (
+    animalList.style.display == "none" &&
+    userPrompt.style.display == "none" //if the pop up box is not displayed and the user prompt is not displayed
+  ) {
     // if pop-up box is not displayed, show it
     getUsersCoordinates(e); //calling the function to get the coordinates of the user
     getCoordinatesAsPercentages(e); //calling the function to get the coordinates of the user as percentages
-    animalList.style.display = "block";
+    animalList.style.display = "flex";
     animalList.style.top = `${coordinates.yCoordinate}px`;
     animalList.style.left = `${coordinates.xCoordinate}px`;
   }

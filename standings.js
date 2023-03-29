@@ -1,3 +1,5 @@
+import { addScoreToFirestore } from "./firebase-config.js";
+
 let userPrompt = document.querySelector(".userPrompt"); //display user prompt upon completion of game
 function showPrompt(counter) {
   if (counter == 4) {
@@ -21,5 +23,17 @@ function stopTimer() {
   clearInterval(myInterval);
   console.log("timer stopped");
 }
+function addStandings() {
+  userPrompt.addEventListener("submit", (e) => {
+    e.preventDefault();
+    //add standings to the firestore database
+    let completedTime = document.querySelector("#congrats").innerHTML; //get the time taken to complete the game
+    let timeTaken = completedTime.match(/\d+/g).map(Number); //extract the time taken to complete the game
+    console.log(timeTaken);
 
-export { showPrompt };
+    let name = document.querySelector("#nameInput").value; //get the name of the user
+    addScoreToFirestore(name, timeTaken); //add the name and time taken to the firestore database
+  });
+}
+
+export { showPrompt, addStandings };

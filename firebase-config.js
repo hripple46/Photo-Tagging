@@ -66,4 +66,13 @@ function showX(x, y) {
   document.body.appendChild(X);
 }
 
-export { showDocs, compareUserSelect };
+async function addScoreToFirestore(name, timeTaken) {
+  let UserScores = await collection(db, "Standings"); //get the collection from the firestore database
+  console.log(UserScores);
+
+  let newScore = { Name: name, Time: timeTaken };
+  await addDoc(UserScores, newScore);
+  location.reload(); //reload the page
+}
+
+export { showDocs, compareUserSelect, addScoreToFirestore };

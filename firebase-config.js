@@ -1,4 +1,4 @@
-import { showPrompt } from "./standings.js";
+import { showPrompt, getTopThree } from "./standings.js";
 
 // Your Firebase configuration and initialization code
 const firebaseConfig = {
@@ -74,5 +74,17 @@ async function addScoreToFirestore(name, timeTaken) {
   await addDoc(UserScores, newScore);
   location.reload(); //reload the page
 }
+//this function pulls standings from Firestore and displays them on page
+async function showStandings() {
+  let topThree = [];
+  let standings = await getDocs(collection(db, "Standings"));
+  standings.forEach((doc) => {
+    let data = doc.data();
+    console.log(data);
+    topThree.push({ Name: data.Name, Time: data.Time });
+  });
+  console.log(topThree);
+  getTopThree(topThree);
+}
 
-export { showDocs, compareUserSelect, addScoreToFirestore };
+export { showDocs, compareUserSelect, addScoreToFirestore, showStandings };

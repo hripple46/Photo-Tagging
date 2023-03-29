@@ -1,7 +1,12 @@
 //import firebase functions
-import { showDocs, compareUserSelect } from "./firebase-config.js";
+import {
+  showDocs,
+  compareUserSelect,
+  showStandings,
+} from "./firebase-config.js";
 import { addStandings } from "./standings.js";
 showDocs(); //calling the function to show the documents in the Animals collection
+showStandings();
 addStandings(); //calling the function to add the standings to the firestore database
 
 let characterList = document.querySelectorAll(".animal"); //selecting the characters

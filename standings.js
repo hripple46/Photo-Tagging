@@ -1,4 +1,4 @@
-import { addScoreToFirestore } from "./firebase-config.js";
+import { addScoreToFirestore, showStandings } from "./firebase-config.js";
 
 let userPrompt = document.querySelector(".userPrompt"); //display user prompt upon completion of game
 function showPrompt(counter) {
@@ -29,11 +29,31 @@ function addStandings() {
     //add standings to the firestore database
     let completedTime = document.querySelector("#congrats").innerHTML; //get the time taken to complete the game
     let timeTaken = completedTime.match(/\d+/g).map(Number); //extract the time taken to complete the game
-    console.log(timeTaken);
+    let userTime = timeTaken[0];
 
     let name = document.querySelector("#nameInput").value; //get the name of the user
-    addScoreToFirestore(name, timeTaken); //add the name and time taken to the firestore database
+    addScoreToFirestore(name, userTime); //add the name and time taken to the firestore database
   });
 }
 
-export { showPrompt, addStandings };
+function getTopThree(standings) {
+  //using bubble sort to sort the standings
+  for (let i = 0; i < standings.length; i++) {
+    for (let j = 0; j < standings.length - 1; j++) {
+      if (standings[j].Time > standings[j + 1].Time) {
+        let temp = standings[j];
+        standings[j] = standings[j + 1];
+        standings[j + 1] = temp;
+      }
+    }
+  }
+  console.log(standings);
+  showTopThree(standings);
+}
+function showTopThree(standings) {
+  for (let i = 0; i < 3; i++) {
+    console.log(standings[i]);
+  }
+}
+
+export { showPrompt, addStandings, getTopThree };

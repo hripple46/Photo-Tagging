@@ -5,6 +5,9 @@ html {
   width: 100%;
   font-family: "PT Mono", monospace;
 }
+.mainImage {
+  position: relative;
+}
 
 img {
   width: 100%;

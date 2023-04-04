@@ -62,8 +62,9 @@ function showX(x, y) {
   X.style.left = x + "%";
   X.style.height = "50px";
   X.style.width = "auto";
-  X.style.transform = "translate(-50%, -50%)"; //this is to center the image
-  document.body.appendChild(X);
+  X.style.transform = "translate(-50%, -50%)";
+  let mainImage = document.querySelector(".mainImage");
+  mainImage.appendChild(X);
 }
 
 async function addScoreToFirestore(name, timeTaken) {

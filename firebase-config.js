@@ -70,10 +70,12 @@ function showX(x, y) {
 async function addScoreToFirestore(name, timeTaken) {
   let UserScores = await collection(db, "Standings"); //get the collection from the firestore database
   console.log(UserScores);
-
+  debugger;
+  let userPrompt = document.querySelector(".userPrompt");
+  userPrompt.style.display = "none";
   let newScore = { Name: name, Time: timeTaken };
   await addDoc(UserScores, newScore);
-  location.reload(); //reload the page
+  showStandings();
 }
 //this function pulls standings from Firestore and displays them on page
 async function showStandings() {

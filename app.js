@@ -4,10 +4,7 @@ import {
   compareUserSelect,
   showStandings,
 } from "./firebase-config.js";
-import { addStandings } from "./standings.js";
 showDocs(); //calling the function to show the documents in the Animals collection
-showStandings();
-addStandings(); //calling the function to add the standings to the firestore database
 
 let characterList = document.querySelectorAll(".animal"); //selecting the characters
 characterList.forEach((element) => {
@@ -42,7 +39,21 @@ animalList.style.display = "none"; //hiding the pop up box
 let userPrompt = document.querySelector(".userPrompt"); //selecting the user prompt
 userPrompt.style.display = "none"; //hiding the user prompt
 
+let clickCount = 0; //variable to not show animal list until after first click
 let togglePopUpBox = (e) => {
+  clickCount++;
+  if (clickCount == 1) {
+    return;
+  }
+  //if the user clicks on the start button, do not show the pop up box
+  let startParent = document.querySelector(".start");
+  let childOne = document.querySelector(".startHeader");
+  let childTwo = document.querySelector(".start");
+  console.log(e.target);
+  if (e.target == startParent || e.target == childOne || e.target == childTwo) {
+    return;
+  }
+
   //function to toggle the pop up box
   console.log(userPrompt.style.display);
   console.log(animalList.style.display);

@@ -41,36 +41,42 @@ userPrompt.style.display = "none"; //hiding the user prompt
 
 let clickCount = 0; //variable to not show animal list until after first click
 let togglePopUpBox = (e) => {
-  clickCount++;
-  if (clickCount == 1) {
-    return;
-  }
   //if the user clicks on the start button, do not show the pop up box
+  let startContainer = document.querySelector("  .start");
+  let startButton = document.querySelector("#start");
+  let startHeader = document.querySelector(" .startHeader");
+  let startText = document.querySelector(".startText");
   let startParent = document.querySelector(".start");
   let childOne = document.querySelector(".startHeader");
   let childTwo = document.querySelector(".start");
   console.log(e.target);
-  if (e.target == startParent || e.target == childOne || e.target == childTwo) {
-    return;
-  }
-
-  //function to toggle the pop up box
-  console.log(userPrompt.style.display);
-  console.log(animalList.style.display);
   if (
-    animalList.style.display == "none" &&
-    userPrompt.style.display == "none" //if the pop up box is not displayed and the user prompt is not displayed
+    //if the user clicks on the start button, do not show the pop up box
+    e.target == startParent ||
+    e.target == childOne ||
+    e.target == childTwo ||
+    e.target.closest(".start")
   ) {
-    // if pop-up box is not displayed, show it
-    getUsersCoordinates(e); //calling the function to get the coordinates of the user
-    getCoordinatesAsPercentages(e); //calling the function to get the coordinates of the user as percentages
-    animalList.style.display = "flex";
-    animalList.style.top = `${coordinates.yCoordinate}px`;
-    animalList.style.left = `${coordinates.xCoordinate}px`;
-  }
-  //check if event.target is neither ul or li then hide the pop up box
-  else {
-    animalList.style.display = "none";
+    return;
+  } else {
+    //function to toggle the pop up box
+    console.log(userPrompt.style.display);
+    console.log(animalList.style.display);
+    if (
+      animalList.style.display == "none" &&
+      userPrompt.style.display == "none" //if the pop up box is not displayed and the user prompt is not displayed
+    ) {
+      // if pop-up box is not displayed, show it
+      getUsersCoordinates(e); //calling the function to get the coordinates of the user
+      getCoordinatesAsPercentages(e); //calling the function to get the coordinates of the user as percentages
+      animalList.style.display = "flex";
+      animalList.style.top = `${coordinates.yCoordinate}px`;
+      animalList.style.left = `${coordinates.xCoordinate}px`;
+    }
+    //check if event.target is neither ul or li then hide the pop up box
+    else {
+      animalList.style.display = "none";
+    }
   }
 };
 document.addEventListener("click", togglePopUpBox);

@@ -67,8 +67,13 @@ function showTopThree(standings) {
     console.log(standings[i]);
     let leaderboard = document.querySelector("#leaderboardList");
     let score = document.createElement("li");
-    score.innerHTML = `${standings[i].Name} - ${standings[i].Time} seconds`;
-    leaderboard.appendChild(score);
+    if (standings[i].Name == "") {
+      score.innerHTML = "Anonymous - " + `${standings[i].Time} seconds`;
+      leaderboard.appendChild(score);
+    } else {
+      score.innerHTML = `${standings[i].Name} - ${standings[i].Time} seconds`;
+      leaderboard.appendChild(score);
+    }
   }
   let restartButton = document.createElement("button");
   restartButton.innerHTML = "Restart";
